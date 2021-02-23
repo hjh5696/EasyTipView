@@ -46,10 +46,10 @@ public extension EasyTipView {
      - parameter preferences: The preferences which will configure the EasyTipView.
      - parameter delegate:    The delegate.
      */
-    class func show(animated: Bool = true, forItem item: UIBarItem, withinSuperview superview: UIView? = nil, text: String, preferences: Preferences = EasyTipView.globalPreferences, delegate: EasyTipViewDelegate? = nil){
+    class func show(animated: Bool = true, forItem item: UIBarItem, withinSuperview superview: UIView? = nil, text: String, preferences: Preferences = EasyTipView.globalPreferences, delegate: EasyTipViewDelegate? = nil, withBackgroundView: UIColor? = nil){
         
         if let view = item.view {
-            show(animated: animated, forView: view, withinSuperview: superview, text: text, preferences: preferences, delegate: delegate)
+            show(animated: animated, forView: view, withinSuperview: superview, text: text, preferences: preferences, delegate: delegate, withBackgroundView: withBackgroundView)
         }
     }
     
@@ -63,10 +63,10 @@ public extension EasyTipView {
      - parameter preferences: The preferences which will configure the EasyTipView.
      - parameter delegate:    The delegate.
      */
-    class func show(animated: Bool = true, forView view: UIView, withinSuperview superview: UIView? = nil, text:  String, preferences: Preferences = EasyTipView.globalPreferences, delegate: EasyTipViewDelegate? = nil){
+    class func show(animated: Bool = true, forView view: UIView, withinSuperview superview: UIView? = nil, text:  String, preferences: Preferences = EasyTipView.globalPreferences, delegate: EasyTipViewDelegate? = nil, withBackgroundView: UIColor? = nil){
         
         let ev = EasyTipView(text: text, preferences: preferences, delegate: delegate)
-        ev.show(animated: animated, forView: view, withinSuperview: superview)
+        ev.show(animated: animated, forView: view, withinSuperview: superview, withBackgroundView: withBackgroundView)
     }
     
     /**
@@ -79,10 +79,10 @@ public extension EasyTipView {
      - parameter preferences: The preferences which will configure the EasyTipView.
      - parameter delegate:    The delegate.
      */
-    class func show(animated: Bool = true, forItem item: UIBarItem, withinSuperview superview: UIView? = nil, contentView: UIView, preferences: Preferences = EasyTipView.globalPreferences, delegate: EasyTipViewDelegate? = nil){
+    class func show(animated: Bool = true, forItem item: UIBarItem, withinSuperview superview: UIView? = nil, contentView: UIView, preferences: Preferences = EasyTipView.globalPreferences, delegate: EasyTipViewDelegate? = nil, withBackgroundView: UIColor? = nil){
         
         if let view = item.view {
-            show(animated: animated, forView: view, withinSuperview: superview, contentView: contentView, preferences: preferences, delegate: delegate)
+            show(animated: animated, forView: view, withinSuperview: superview, contentView: contentView, preferences: preferences, delegate: delegate, withBackgroundView: withBackgroundView)
         }
     }
     
@@ -96,10 +96,10 @@ public extension EasyTipView {
      - parameter preferences: The preferences which will configure the EasyTipView.
      - parameter delegate:    The delegate.
      */
-    class func show(animated: Bool = true, forView view: UIView, withinSuperview superview: UIView? = nil, contentView: UIView, preferences: Preferences = EasyTipView.globalPreferences, delegate: EasyTipViewDelegate? = nil){
+    class func show(animated: Bool = true, forView view: UIView, withinSuperview superview: UIView? = nil, contentView: UIView, preferences: Preferences = EasyTipView.globalPreferences, delegate: EasyTipViewDelegate? = nil, withBackgroundView: UIColor? = nil){
         
         let ev = EasyTipView(contentView: contentView, preferences: preferences, delegate: delegate)
-        ev.show(animated: animated, forView: view, withinSuperview: superview)
+        ev.show(animated: animated, forView: view, withinSuperview: superview, withBackgroundView: withBackgroundView)
     }
 
     /**
@@ -111,10 +111,10 @@ public extension EasyTipView {
      - parameter preferences:    The preferences which will configure the EasyTipView.
      - parameter delegate:       The delegate.
      */
-    class func show(animated: Bool = true, forView view: UIView, withinSuperview superview: UIView? = nil, attributedText:  NSAttributedString, preferences: Preferences = EasyTipView.globalPreferences, delegate: EasyTipViewDelegate? = nil){
+    class func show(animated: Bool = true, forView view: UIView, withinSuperview superview: UIView? = nil, attributedText:  NSAttributedString, preferences: Preferences = EasyTipView.globalPreferences, delegate: EasyTipViewDelegate? = nil, withBackgroundView: UIColor? = nil){
 
         let ev = EasyTipView(text: attributedText, preferences: preferences, delegate: delegate)
-        ev.show(animated: animated, forView: view, withinSuperview: superview)
+        ev.show(animated: animated, forView: view, withinSuperview: superview, withBackgroundView: withBackgroundView)
     }
 
     // MARK:- Instance methods -
@@ -126,9 +126,9 @@ public extension EasyTipView {
      - parameter item:      The UIBarButtonItem or UITabBarItem instance which the EasyTipView will be pointing to.
      - parameter superview: A view which is part of the UIBarButtonItem instances superview hierarchy. Ignore this parameter in order to display the EasyTipView within the main window.
      */
-    func show(animated: Bool = true, forItem item: UIBarItem, withinSuperView superview: UIView? = nil) {
+    func show(animated: Bool = true, forItem item: UIBarItem, withinSuperView superview: UIView? = nil, withBackgroundView: UIColor? = nil) {
         if let view = item.view {
-            show(animated: animated, forView: view, withinSuperview: superview)
+            show(animated: animated, forView: view, withinSuperview: superview, withBackgroundView: withBackgroundView)
         }
     }
     
