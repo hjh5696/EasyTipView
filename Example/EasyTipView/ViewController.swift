@@ -111,7 +111,7 @@ class ViewController: UIViewController, EasyTipViewDelegate {
             preferences.animating.dismissDuration = 1
             
             let view = EasyTipView(text: "Tip view within the green superview. Tap to dismiss.", preferences: preferences)
-            view.show(forView: buttonA, withinSuperview: self.smallContainerView)
+            view.show(forView: buttonA, withinSuperview: self.smallContainerView, withBackgroundView: UIColor.black.withAlphaComponent(0.6))
             
         case buttonB:
             
@@ -169,7 +169,7 @@ class ViewController: UIViewController, EasyTipViewDelegate {
             preferences.positioning.maxWidth = 150
             
             let view = EasyTipView(text: "Tip view positioned with the arrow on the right. Tap to dismiss.", preferences: preferences)
-            view.show(forView: buttonE, withinSuperview: self.navigationController?.view!)
+            view.show(forView: buttonE, withinSuperview: self.navigationController?.view!, withBackgroundView: UIColor.black.withAlphaComponent(0.6))
             
         case buttonF:
             

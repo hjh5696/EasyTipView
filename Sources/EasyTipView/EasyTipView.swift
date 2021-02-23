@@ -139,7 +139,7 @@ public extension EasyTipView {
      - parameter view:      The UIView instance which the EasyTipView will be pointing to.
      - parameter superview: A view which is part of the UIView instances superview hierarchy. Ignore this parameter in order to display the EasyTipView within the main window.
      */
-    func show(animated: Bool = true, forView view: UIView, withinSuperview superview: UIView? = nil) {
+    func show(animated: Bool = true, forView view: UIView, withinSuperview superview: UIView? = nil, withBackgroundView: UIColor? = nil) {
         
         #if TARGET_APP_EXTENSIONS
         precondition(superview != nil, "The supplied superview parameter cannot be nil for app extensions.")
@@ -162,11 +162,21 @@ public extension EasyTipView {
         
         transform = initialTransform
         alpha = initialAlpha
-        
+
         let tap = UITapGestureRecognizer(target: self, action: #selector(handleTap))
-        addGestureRecognizer(tap)
-        
-        superview.addSubview(self)
+
+        if let backgroundColor = withBackgroundView {
+            let bView = UIView()
+            bView.backgroundColor = backgroundColor
+            superview.addSubview(bView)
+            bView.addSubview(self)
+            bView.frame = superview.bounds
+            bView.addGestureRecognizer(tap)
+            self.backgroundView = bView
+        } else {
+            addGestureRecognizer(tap)
+            superview.addSubview(self)
+        }
         
         let animations : () -> () = {
             self.transform = finalTransform
@@ -189,6 +199,7 @@ public extension EasyTipView {
         
         let damping = preferences.animating.springDamping
         let velocity = preferences.animating.springVelocity
+        backgroundView?.removeFromSuperview()
         
         UIView.animate(withDuration: preferences.animating.dismissDuration, delay: 0, usingSpringWithDamping: damping, initialSpringVelocity: velocity, options: [.curveEaseInOut], animations: { 
             self.transform = self.preferences.animating.dismissTransform
@@ -306,6 +317,8 @@ open class EasyTipView: UIView {
         
         return "<< \(type) with \(content) >>"
     }
+
+    fileprivate var backgroundView: UIView?
     
     fileprivate weak var presentingView: UIView?
     fileprivate weak var delegate: EasyTipViewDelegate?
